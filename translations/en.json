@@ -1,0 +1,29 @@
+{
+  "_meta": { "name": "English" },
+  "screen": {
+    "range_word": "Range:",
+    "no_battery": "Choose a battery sensor",
+    "no_range": "Choose a range sensor"
+  },
+  "app": {
+    "name": "EV tile",
+    "summary": "Your electric car on a tile: its picture, the battery as a bar and the range it has left.",
+    "tile_name": "Electric car",
+    "tile_example": "VW ID.3, 79 %, 189 km",
+    "battery": "Battery",
+    "battery_hint": "The sensor with the battery's charge in percent.",
+    "range": "Range",
+    "range_hint": "The sensor with the range the car has left, such as in km.",
+    "decimals": "Range decimals",
+    "decimals_hint": "As Home Assistant gives it, or rounded.",
+    "decimals_ha": "As Home Assistant has it",
+    "decimals_0": "None (189 km)",
+    "decimals_1": "One (189.0 km)",
+    "low": "Low battery",
+    "low_hint": "At or below this charge the bar turns red.",
+    "fit": "Fit",
+    "fit_hint": "Contain shows the whole car; cover fills the space and cuts away what is over.",
+    "fit_contain": "Contain",
+    "fit_cover": "Cover"
+  }
+}

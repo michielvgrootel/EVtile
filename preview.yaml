@@ -1,0 +1,37 @@
+# What tools/preview.py shows (docs/PREVIEW.md of the plugins repository): the car with its picture, battery and range,
+# a car that is almost empty, and a tile that still waits for its sensors. The picture comes from the file below.
+tiles:
+  - tile: car
+    name: VW ID.3
+    entity: image.id3
+    options: { battery: sensor.id3_battery, range: sensor.id3_range, decimals: "1" }
+    sizes: [2x2, 1x1, 2x3]
+  - tile: car
+    name: Almost empty
+    entity: image.id3
+    options: { battery: sensor.id3_low_battery, range: sensor.id3_low_range, decimals: "0" }
+    sizes: [2x2]
+  - tile: car
+    name: New tile
+    entity: image.id3
+    sizes: [2x2]
+
+states:
+  image.id3:
+    state: "2026-11-13T08:00:00+00:00"
+    attributes: { friendly_name: ID.3, entity_picture: "/api/image_proxy/image.id3?token=abc" }
+  sensor.id3_battery:
+    state: "79"
+    attributes: { friendly_name: ID.3 battery, unit_of_measurement: "%" }
+  sensor.id3_range:
+    state: "189.0"
+    attributes: { friendly_name: ID.3 range, unit_of_measurement: km }
+  sensor.id3_low_battery:
+    state: "12"
+    attributes: { friendly_name: ID.3 battery, unit_of_measurement: "%" }
+  sensor.id3_low_range:
+    state: "28.4"
+    attributes: { friendly_name: ID.3 range, unit_of_measurement: km }
+
+pictures:
+  "camera:image.id3": preview/car.png

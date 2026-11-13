@@ -1,0 +1,39 @@
+# EV tile: an electric car on a tile. The car's name at the top, its picture in the middle, the battery as a bar with
+# its percentage, and the range under it. The picture is the tile's own entity, a Home Assistant image entity (a
+# template image loads any http or https address); the battery and the range are entities chosen per tile (plugin API
+# 0.15). Every field is explained in docs/MANIFEST.md of the plugins repository.
+id: ev_tile
+version: 0.1.0
+# 0.15 for options of kind entity, 0.17 for camera:<entity>, on_picture and Placeholder::NONE.
+api: "0.17"
+icon: car-electric
+maintainer: michielvgrootel
+license: MIT
+stage: beta
+topics: [energy, travel]
+requires:
+  esphome: 2026.6.2
+boards: any
+flash_kb: 6
+
+tiles:
+  - id: car
+    name: tile_name
+    icon: car-electric
+    sizes: { min: 1x1, max: 4x4 }
+    # Six labels and blocks, the picture's place and a few short texts.
+    memory: 900
+    # One place for the car's picture.
+    pictures: 1
+    # The tile's own entity: the car's picture. A template image entity in Home Assistant loads it from any address.
+    domains: [image, camera]
+    example: tile_example
+    preview: { title: "{name}" }
+    options:
+      - { id: battery, kind: entity, domains: [sensor], attributes: [unit_of_measurement], label: battery, hint: battery_hint }
+      - { id: range, kind: entity, domains: [sensor], attributes: [unit_of_measurement], label: range, hint: range_hint }
+      - { id: decimals, kind: choice, label: decimals, hint: decimals_hint, default: ha,
+          choices: [{ value: ha, label: decimals_ha }, { value: "0", label: decimals_0 }, { value: "1", label: decimals_1 }] }
+      - { id: low, kind: number, label: low, hint: low_hint, default: 20, min: 0, max: 50, step: 5, unit: "%" }
+      - { id: fit, kind: choice, label: fit, hint: fit_hint, default: contain,
+          choices: [{ value: contain, label: fit_contain }, { value: cover, label: fit_cover }] }

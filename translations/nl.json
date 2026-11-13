@@ -1,0 +1,29 @@
+{
+  "_meta": { "name": "Nederlands" },
+  "screen": {
+    "range_word": "bereik:",
+    "no_battery": "Kies een accusensor",
+    "no_range": "Kies een bereiksensor"
+  },
+  "app": {
+    "name": "EV-tegel",
+    "summary": "Je elektrische auto op een tegel: de foto, de accu als balk en het bereik dat over is.",
+    "tile_name": "Elektrische auto",
+    "tile_example": "VW ID.3, 79 %, 189 km",
+    "battery": "Accu",
+    "battery_hint": "De sensor met de lading van de accu in procenten.",
+    "range": "Bereik",
+    "range_hint": "De sensor met het bereik dat de auto nog heeft, bijvoorbeeld in km.",
+    "decimals": "Decimalen bereik",
+    "decimals_hint": "Zoals Home Assistant het geeft, of afgerond.",
+    "decimals_ha": "Zoals Home Assistant het heeft",
+    "decimals_0": "Geen (189 km)",
+    "decimals_1": "Eén (189,0 km)",
+    "low": "Accu bijna leeg",
+    "low_hint": "Op of onder deze lading wordt de balk rood.",
+    "fit": "Passen",
+    "fit_hint": "Passend toont de hele auto; vullen vult de ruimte en snijdt af wat over is.",
+    "fit_contain": "Passend",
+    "fit_cover": "Vullen"
+  }
+}
