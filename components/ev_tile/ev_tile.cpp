@@ -84,13 +84,21 @@ class CarTile : public tessera::Tile {
 
     JsonObjectConst range = entities["range"];
     has_range_ = !range.isNull();
-    float km = 0;
-    range_ok_ = has_range_ && number_of(range["state"] | "", &km);
+    // Always in kilometres, whatever unit the sensor has: metres, miles and feet are turned into km; a sensor
+    // without a unit is taken to be in km already.
+    float value = 0;
+    range_ok_ = has_range_ && number_of(range["state"] | "", &value);
     if (range_ok_) {
-      if (decimals_ < 0) keep(range_num_, sizeof(range_num_), range["state"] | "");
-      else std::snprintf(range_num_, sizeof(range_num_), "%.*f", decimals_, km);
+      const std::string unit = range["attributes"]["unit_of_measurement"] | "";
+      float scale = 1.0f;
+      if (unit == "m") scale = 0.001f;
+      else if (unit == "mi") scale = 1.609344f;
+      else if (unit == "ft") scale = 0.0003048f;
+      const bool converted = scale != 1.0f;
+      const float km = value * scale;
+      if (decimals_ < 0 && !converted) keep(range_num_, sizeof(range_num_), range["state"] | "");
+      else std::snprintf(range_num_, sizeof(range_num_), "%.*f", decimals_ < 0 ? 0 : decimals_, km);
     }
-    keep(range_unit_, sizeof(range_unit_), range["attributes"]["unit_of_measurement"] | "");
 
     // Lay out first: a place gets its picture only once it has a size.
     paint();
@@ -138,7 +146,7 @@ class CarTile : public tessera::Tile {
     if (!has_range_) return plugin_->text("no_range");
     if (!range_ok_) return "-";
     std::string t = range_num_;
-    if (*range_unit_) t += std::string(" ") + range_unit_;
+    t += " km";
     return t;
   }
 
@@ -270,7 +278,6 @@ class CarTile : public tessera::Tile {
   tessera::Text name_, entity_;   // kept as long as the card: PSRAM first (docs/FIRMWARE_API.md, "Memory")
   char entity_name_[52] = "";
   char range_num_[20] = "";
-  char range_unit_[12] = "";
   int width_ = 0, height_ = 0, bar_y_ = 0, bar_h_ = 0, low_ = 20, decimals_ = -1;
   float battery_ = 0;
   bool contain_ = true, has_battery_ = false, battery_ok_ = false, has_range_ = false, range_ok_ = false;

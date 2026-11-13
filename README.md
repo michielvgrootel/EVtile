@@ -26,7 +26,8 @@ battery and the range come from any two sensors in Home Assistant, such as the o
 4. In the inspector:
    - choose the image entity from step 1 as the tile's entity;
    - **Battery**: the sensor with the battery's charge in percent;
-   - **Range**: the sensor with the range left;
+   - **Range**: the sensor with the range left. It is always shown in km; a sensor in metres or miles is turned
+     into km;
    - give the tile a name (such as `VW ID.3`) for the title, or leave it empty to use the image entity's name.
 5. Optional: **Range decimals**, **Low battery** (default 20 %) and **Fit** (contain shows the whole car).
 

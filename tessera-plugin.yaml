@@ -3,7 +3,7 @@
 # template image loads any http or https address); the battery and the range are entities chosen per tile (plugin API
 # 0.15). Every field is explained in docs/MANIFEST.md of the plugins repository.
 id: ev_tile
-version: 0.1.0
+version: 0.2.0
 # 0.15 for options of kind entity, 0.17 for camera:<entity>, on_picture and Placeholder::NONE.
 api: "0.17"
 icon: car-electric

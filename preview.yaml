@@ -30,8 +30,8 @@ states:
     state: "12"
     attributes: { friendly_name: ID.3 battery, unit_of_measurement: "%" }
   sensor.id3_low_range:
-    state: "28.4"
-    attributes: { friendly_name: ID.3 range, unit_of_measurement: km }
+    state: "28400"
+    attributes: { friendly_name: ID.3 range, unit_of_measurement: m }
 
 pictures:
   "camera:image.id3": preview/car.png
